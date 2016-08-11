@@ -14,8 +14,7 @@ abstract class baseDAO
 
     private function __connectToDB($user, $pass, $host, $database)
     {
-        $this->__connection = mysql_connect($host, $user, $pass);
-        mysql_select_db($database, $this->__connection);
+        $this->__connection = mysqli::_connect($host, $user, $pass, $database);
     }
 
     public function fetch($value, $key = NULL)
@@ -26,10 +25,10 @@ abstract class baseDAO
         }
 
         $sql = "select * from {$this->_tableName} where {$key}='{$value}'";
-        $results = mysql_query($sql, $this->__connection);
+        $results = mysqli_query($sql, $this->__connection);
 
         $rows = array();
-        while ($result = mysql_fetch_array($results))
+        while ($result = mysqli_fetch_array($results))
         {
             $rows[] = $result;
         }
@@ -45,7 +44,7 @@ abstract class baseDAO
         }
         $sql .= implode(",",$updates);
         $sql .= "where {$this->_primaryKey}='{$keyedArray[$this->_primaryKey]}'";
-        mysql_query($sql, $this->__connection);
+        mysqli:_query($sql, $this->__connection);
 
     }
 }

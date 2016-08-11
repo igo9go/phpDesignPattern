@@ -1,6 +1,6 @@
 <?php
 /**
- * 适配器模式
+ * 适配器模式, 主要使用适配器来更新接口,而不需要去改动公共接口的标准。
  * 解决问题：在转换一个对象的接口用于另一个对象时，实现Adapter对象不仅是最佳做法，而且也能减少很多麻烦
  */
 class errorObject
@@ -46,7 +46,7 @@ class logToCSV
         $line = $this->__errorObject->getErrorNumber();
         $line .= ",";
         $line .= $this->__errorObject->getErrorText();
-        $Line .= "\n";
+        $line .= "\n";
         file_put_contents(self::CSV_LOCATION, $line, FILE_APPEND);
     }
 }

@@ -1,5 +1,6 @@
 ﻿<?php
 /**
+ * 抽象工厂模式应该在日常生产过程中运用的很多了
  * 工厂设计模式： 提供获取某个对象的新实例的一个接口， 同时使调用代码避免确定实际实例化基类的步骤
  */
 //基础标准CD类
@@ -32,6 +33,7 @@ class CD extends baseCD{
 class enhadcedCD extends baseCD{
 	public $type = 'enhadced';
 }
+
 
 //CD工厂类，实现对以上两个类具体实例化操作
 class CDFactory {

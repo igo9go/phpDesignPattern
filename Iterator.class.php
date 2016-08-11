@@ -26,20 +26,20 @@ class CDSearchByBandIterator implements Iterator {
 	private $_valid = FALSE;
 	
 	public function __construct($bandName) {
-		$db = mysql_connect("localhost", "root", "root");
-		mysql_select_db("test");
+		$db = mysqli_connect("localhost", "root", "root", "test");
+        mysqli_select_db("test");
 		
 		$sql  = "select CD.id, CD.band, CD.title, tracks.tracknum, tracks.title as tracktitle ";
 		$sql .= "from CD left join tracks on CD.id = tracks.cid ";
-		$sql .= "where band = '" . mysql_real_escape_string($bandName) . "' ";
+		$sql .= "where band = '" . mysqli_real_escape_string($bandName) . "' ";
 		$sql .= "order by tracks.tracknum";
 		
-		$results = mysql_query($sql);
+		$results = mysqli_query($db, $sql);
 
 		$cdID = 0;
 		$cd   = NULL;
 		
-		while ($result = mysql_fetch_array($results)) {
+		while ($result = mysqli_fetch_array($results)) {
 			if ($result["id"] !== $cdID) {
 				if ( ! is_null($cd)) {
 					$this->_CDs[] = $cd;

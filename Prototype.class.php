@@ -10,13 +10,13 @@ class CD {
 	public $band  = "";
 	public $trackList = array();
 	public function __construct($id) {
-		$handle = mysql_connect("localhost", "root", "root");
-		mysql_select_db("test", $handle);
+		$handle = mysqli_connect("localhost", "root", "root");
+		mysqli_select_db("test", $handle);
 		
 		$query  = "select * from cd where id = {$id}";
-		$results= mysql_query($query, $handle);
+		$results= mysqli_query($query, $handle);
 		
-		if ($row = mysql_fetch_assoc($results)) {
+		if ($row = mysqli_fetch_assoc($results)) {
 			$this->band  = $row["band"];
 			$this->title = $row["title"];
 		}

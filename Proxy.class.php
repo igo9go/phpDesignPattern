@@ -20,19 +20,19 @@ class CD {
 		$this->_connect();
 		
 		$query  = "update cd set bought = 1 where band = '";
-		$query .= mysql_real_escape_string($this->_band, $this->_handle);
+		$query .= mysqli_real_escape_string($this->_band, $this->_handle);
 		$query .= " ' and title = '";
-		$query .= mysql_real_escape_string($this->_title, $this->_handle);
+		$query .= mysqli_real_escape_string($this->_title, $this->_handle);
 		$query .= "'";
 		
-		mysql_query($query, $this->_handle);
+		mysqli_query($query, $this->_handle);
 		
 		//var_dump("success");
 	}
 	
 	protected function _connect() {
-		$this->_handle = mysql_connect("localhost", "root", "root");
-		mysql_select_db("test", $this->_handle);
+		$this->_handle = mysqli_connect("localhost", "root", "root");
+		mysqli_select_db("test", $this->_handle);
 	}
 }
 
@@ -42,8 +42,8 @@ class CD {
 //代理类
 class DallasNoCCDProxy extends CD {
 	protected function _connect() {
-		$this->_handle = mysql_connect("dallas", "user", "pass");
-		mysql_select_db("test", $this->_handle);
+		$this->_handle = mysqli_connect("dallas", "user", "pass");
+		mysqli_select_db("test", $this->_handle);
 	}
 }
 
